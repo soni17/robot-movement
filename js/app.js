@@ -44,6 +44,7 @@ myApp.controller('mainController' , ['$scope' , function($scope){
 
     if      ($scope.instruction==="FORWARD") {$scope.steps += 1;}
     else if ($scope.instruction==="BACKWARD" && $scope.steps != 0) {$scope.steps -= 1;}
+    else if ($scope.instruction==="BACKWARD" && $scope.steps == 0) {$scope.errorMsg = "Cannot go backwards when steps is 0"}
 
     $scope.instruction = "";
 
