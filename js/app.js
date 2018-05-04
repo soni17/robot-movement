@@ -7,7 +7,7 @@ myApp.controller('mainController' , ['$scope' , function($scope){
     $scope.instruction = "enter instruction for robot";
     $scope.direction = "NORTH";
     $scope.steps = 0;
-    $scope.instrHist = ['first','second'];
+    $scope.instrHist = [];
     $scope.errorMsg = false;
   }
 
@@ -15,6 +15,7 @@ myApp.controller('mainController' , ['$scope' , function($scope){
   $scope.resetInput();
 
 //check if instruction entered is valid. Display error message if not
+//if valid also add to instructions history array at the beginning
   function isInstructionValid(){
     var instructions = ["LEFT","RIGHT","FORWARD","BACKWARD"];
 
@@ -22,6 +23,7 @@ myApp.controller('mainController' , ['$scope' , function($scope){
       $scope.errorMsg = "Invalid instruction";
     } else {
       $scope.errorMsg = false;
+      $scope.instrHist.unshift({name: $scope.instruction});
     }
   }
 
@@ -44,6 +46,7 @@ myApp.controller('mainController' , ['$scope' , function($scope){
     else if ($scope.instruction==="BACKWARD" && $scope.steps != 0) {$scope.steps -= 1;}
 
     $scope.instruction = "";
+
   }
 
 
