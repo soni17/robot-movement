@@ -14,7 +14,7 @@ myApp.controller('mainController' , ['$scope' , function($scope){
 
   $scope.submitInstr = function(){
 
-    isInstructionValid()
+    isInstructionValid();
 
     if      ($scope.direction === "NORTH" && $scope.instruction==="LEFT") {$scope.direction = "WEST";}
     else if ($scope.direction === "NORTH" && $scope.instruction==="RIGHT") {$scope.direction = "EAST";}
@@ -24,6 +24,9 @@ myApp.controller('mainController' , ['$scope' , function($scope){
     else if ($scope.direction === "EAST" && $scope.instruction==="RIGHT") {$scope.direction = "SOUTH";}
     else if ($scope.direction === "WEST" && $scope.instruction==="LEFT") {$scope.direction = "SOUTH";}
     else if ($scope.direction === "WEST" && $scope.instruction==="RIGHT") {$scope.direction = "NORTH";}
+
+    if      ($scope.instruction==="FORWARD") {$scope.steps += 1;}
+    else if ($scope.instruction==="BACKWARD" && $scope.steps != 0) {$scope.steps -= 1;}
 
     $scope.instruction = "";
   }
