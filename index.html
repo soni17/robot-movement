@@ -13,22 +13,23 @@
 
     <div class="container" ng-controller="mainController">
 
-      <div class="left">
+      <div class="instruction">
         <h3>Enter Instructions  <span class="error" ng-if="errorMsg">{{errorMsg}}</span> </h3>
         <input type="text" ng-model="instruction" ng-click="clearInput()"/>
         <button ng-click="submitInstr()">Submit</button>
         <button ng-click="resetInput()">Reset</button>
-        <div id="instrHist">
-          <ul ng-repeat="instr in instrHist">
-            <li>{{instr}}</li>
-          </ul>
-        </div>
       </div>
 
-      <div class="right">
+      <div class="direction">
         <h3>Location of robot</h3>
         <p>Direction: {{direction}} </p>
-        <p>Steps: {{steps}}</p>
+        <p>Steps taken forward: {{steps}}</p>
+      </div>
+
+      <div class="instrHist">
+        <ul ng-repeat="instr in instrHist">
+          <li>{{instr}}</li>
+        </ul>
       </div>
 
     </div>

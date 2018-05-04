@@ -7,18 +7,24 @@ h1{
   width:700px;
 }
 
-.left{
+.instruction{
   width:350px;
   float:left;
   background-color: #ebebeb;
   padding-left:20px;
   box-sizing: border-box;
+  height:130px;
 }
 
-.right{
+.direction{
   width:350px;
-  float:right;
+  float:left;
   background-color: #E1EABF;
   padding-left:20px;
   box-sizing: border-box;
+  height:130px;
+}
+
+.instrHist{
+  float:left;
 }

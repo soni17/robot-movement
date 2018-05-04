@@ -2,6 +2,19 @@ var myApp = angular.module('myApp',[]);
 
 myApp.controller('mainController' , ['$scope' , function($scope){
 
+//declare variables inside a function which is to be used by the reset button
+  $scope.resetInput = function(){
+    $scope.instruction = "enter instruction for robot";
+    $scope.direction = "NORTH";
+    $scope.steps = 0;
+    $scope.instrHist = ['first','second'];
+    $scope.errorMsg = false;
+  }
+
+  //invoke function on startup which declares variables
+  $scope.resetInput();
+
+//check if instruction entered is valid. Display error message if not
   function isInstructionValid(){
     var instructions = ["LEFT","RIGHT","FORWARD","BACKWARD"];
 
@@ -12,6 +25,8 @@ myApp.controller('mainController' , ['$scope' , function($scope){
     }
   }
 
+
+//get instruction from user and determine direction and steps taken forward
   $scope.submitInstr = function(){
 
     isInstructionValid();
@@ -31,19 +46,13 @@ myApp.controller('mainController' , ['$scope' , function($scope){
     $scope.instruction = "";
   }
 
+
+//clear input box when clicking on it
   $scope.clearInput = function(){
     $scope.instruction = "";
   }
 
-  $scope.resetInput = function(){
-    $scope.instruction = "enter instruction for robot";
-    $scope.direction = "NORTH";
-    $scope.steps = 0;
-    $scope.instrHist = [];
-    $scope.errorMsg = false;
-  }
 
-  $scope.resetInput();
 
 
 }]);
