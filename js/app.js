@@ -3,7 +3,7 @@ var myApp = angular.module('myApp',[]);
 myApp.controller('mainController' , ['$scope' , function($scope){
 
 //declare variables inside a function which is to be used by the reset button
-  $scope.resetInput = function(){
+  $scope.setupVars = function(){
     $scope.instruction = "enter instruction for robot";
     $scope.direction = "NORTH";
     $scope.steps = 0;
@@ -12,7 +12,7 @@ myApp.controller('mainController' , ['$scope' , function($scope){
   }
 
   //invoke function on startup which declares variables
-  $scope.resetInput();
+  $scope.setupVars();
 
 //check if instruction entered is valid. Display error message if not
 //if valid also add to instructions history array at the beginning
