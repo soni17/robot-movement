@@ -5,13 +5,30 @@
     <title>Robot Movement</title>
     <script src="js/angular.min.js"></script>
     <script src="js/app.js"></script>
-    <link rel="stylesheet" href="/css/styling.css">
+    <link rel="stylesheet" href="css/styling.css">
   </head>
   <body>
 
     <h1>Robot Movement</h1>
-    
-    <div>
+
+    <div class="container">
+
+      <div class="left">
+        <h3>Enter Instructions</h3>
+        <input type="text" />
+        <button>Submit</button>
+        <div id="instrHist">
+          <ul>
+            <li>instr</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="right">
+        <h3>Location of robot</h3>
+        <p>Direction:</p>
+        <p>Steps:</p>
+      </div>
 
     </div>
 
