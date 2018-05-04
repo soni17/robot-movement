@@ -14,10 +14,11 @@
     <div class="container" ng-controller="mainController">
 
       <div class="instruction">
-        <h3>Enter Instructions  <span class="error" ng-if="errorMsg">{{errorMsg}}</span> </h3>
+        <h3>Enter Instructions</h3>
         <input type="text" ng-model="instruction" ng-click="clearInput()"/>
         <button ng-click="submitInstr()">Submit</button>
         <button ng-click="resetInput()">Reset</button>
+        <span class="error" ng-if="errorMsg">{{errorMsg}}</span>
       </div>
 
       <div class="direction">

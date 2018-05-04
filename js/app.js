@@ -20,7 +20,7 @@ myApp.controller('mainController' , ['$scope' , function($scope){
     var instructions = ["LEFT","RIGHT","FORWARD","BACKWARD"];
 
     if ( instructions.indexOf($scope.instruction) == -1 ) {
-      $scope.errorMsg = "Invalid instruction";
+      $scope.errorMsg = "Invalid instruction. Use only LEFT-RIGHT-FORWARD-BACKWARD";
     } else {
       $scope.errorMsg = false;
       $scope.instrHist.unshift({name: $scope.instruction});

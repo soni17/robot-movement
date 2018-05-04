@@ -7,6 +7,10 @@ h1{
   width:700px;
 }
 
+.error{
+  color:red;
+}
+
 .instruction{
   width:350px;
   float:left;
