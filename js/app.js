@@ -2,8 +2,20 @@ var myApp = angular.module('myApp',[]);
 
 myApp.controller('mainController' , ['$scope' , function($scope){
 
+  function isInstructionValid(){
+    var instructions = ["LEFT","RIGHT","FORWARD","BACKWARD"];
+
+    if ( instructions.indexOf($scope.instruction) == -1 ) {
+      $scope.errorMsg = "Invalid instruction";
+    } else {
+      $scope.errorMsg = false;
+    }
+  }
 
   $scope.submitInstr = function(){
+
+    isInstructionValid()
+
     if      ($scope.direction === "NORTH" && $scope.instruction==="LEFT") {$scope.direction = "WEST";}
     else if ($scope.direction === "NORTH" && $scope.instruction==="RIGHT") {$scope.direction = "EAST";}
     else if ($scope.direction === "SOUTH" && $scope.instruction==="LEFT") {$scope.direction = "EAST";}
