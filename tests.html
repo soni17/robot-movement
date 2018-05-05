@@ -1,0 +1,125 @@
+<html>
+  <head>
+    <!-- Jasmine References -->
+    <link rel="stylesheet" type="text/css" href="jasmine/2.3.3/jasmine.min.css">
+    <script src="jasmine/2.3.3/jasmine.min.js"></script>
+    <script type="text/javascript" src="jasmine/2.3.3/jasmine-html.min.js"></script>
+    <script type="text/javascript" src="jasmine/2.3.3/boot.min.js"></script>
+
+    <!-- Angular and Angular Mock references -->
+    <script type="text/javascript" src="angular/1.6.9/angular.min.js"></script>
+    <script type="text/javascript" src="angular/1.6.9/angular-mocks.js"></script>
+  </head>
+  <body></body>
+  <script src="js/app.js"></script>
+  <script type="text/javascript">
+
+    /* Test Code */
+    describe('RobotMovementApp', function () {
+      var $controller;
+      beforeEach(module('myApp'));
+      beforeEach(inject(function(_$controller_){
+        $controller = _$controller_;
+      }));
+
+      describe('When starting application', function () {
+        it('Direction should be NORTH', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.submitInstr();
+          expect($scope.direction).toBe("NORTH");
+        });
+        it('Steps forward should be 0', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.submitInstr();
+          expect($scope.steps).toBe(0);
+        });
+      });
+
+      describe('When entering valid data such as "LEFT-RIGHT-FORWARD-BACKWARD"', function () {
+        it('Error message should not be returned', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+
+          $scope.instruction = "LEFT";
+          $scope.submitInstr();
+          expect($scope.errorMsg).toBe(false);
+
+          $scope.instruction = "RIGHT";
+          $scope.submitInstr();
+          expect($scope.errorMsg).toBe(false);
+
+          $scope.instruction = "FORWARD";
+          $scope.submitInstr();
+          expect($scope.errorMsg).toBe(false);
+
+          $scope.instruction = "BACKWARD";
+          $scope.submitInstr();
+          expect($scope.errorMsg).toBe(false);
+        });
+      });
+
+      describe('When entering invalid data such as "random"', function () {
+        it('Error message should be returned', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.instruction = "random";
+          $scope.submitInstr();
+          expect($scope.errorMsg).toBe("Invalid instruction. Use only LEFT-RIGHT-FORWARD-BACKWARD");
+        });
+      });
+
+      describe('When pressing reset button', function () {
+        it('All variables should be reset', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.instruction = "do nothing";
+          $scope.direction = "EAST";
+          $scope.steps = 5;
+          $scope.instrHist = ['LEFT','RIGHT','FORWARD'];
+          $scope.errorMsg = true;
+          $scope.setupVars();
+          expect($scope.instruction).toBe("enter instruction for robot");
+          expect($scope.direction).toBe("NORTH");
+          expect($scope.steps).toBe(0);
+          expect($scope.instrHist).toEqual([]);
+          expect($scope.errorMsg).toBe(false);
+        });
+      });
+
+      describe('Instructions entered', function () {
+        it('should be saved in the instructions history array', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.instruction = "RIGHT";
+          $scope.submitInstr();
+          expect($scope.instrHist).toEqual([{name: 'RIGHT'}]);
+        });
+        it('and they should be ordered descending from newest to oldest', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.instruction = "RIGHT";
+          $scope.submitInstr();
+          $scope.instruction = "FORWARD";
+          $scope.submitInstr();
+          $scope.instruction = "LEFT";
+          $scope.submitInstr();
+          expect($scope.instrHist).toEqual([{name: 'LEFT'},{name: 'FORWARD'},{name: 'RIGHT'}]);
+        });
+      });
+
+      describe('Instruction entered: LEFT', function () {
+        it('Direction should be WEST', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.direction = "EAST";
+          $scope.instruction = "RIGHT";
+          $scope.submitInstr();
+          expect($scope.direction).toBe("SOUTH");
+        });
+      });
+
+    });
+  </script>
+</html>
