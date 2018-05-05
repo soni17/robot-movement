@@ -109,8 +109,51 @@
         });
       });
 
-      describe('Instruction entered: LEFT', function () {
-        it('Direction should be WEST', function () {
+      describe('Testing all possible scenarios for direction', function () {
+
+        it('When direction is NORTH and instruction is LEFT, direction should be', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.direction = "NORTH";
+          $scope.instruction = "LEFT";
+          $scope.submitInstr();
+          expect($scope.direction).toBe("WEST");
+        });
+        it('When direction is NORTH and instruction is RIGHT, direction should be', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.direction = "NORTH";
+          $scope.instruction = "RIGHT";
+          $scope.submitInstr();
+          expect($scope.direction).toBe("EAST");
+        });
+
+        it('When direction is SOUTH and instruction is LEFT, direction should be', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.direction = "SOUTH";
+          $scope.instruction = "LEFT";
+          $scope.submitInstr();
+          expect($scope.direction).toBe("EAST");
+        });
+        it('When direction is SOUTH and instruction is RIGHT, direction should be', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.direction = "SOUTH";
+          $scope.instruction = "RIGHT";
+          $scope.submitInstr();
+          expect($scope.direction).toBe("WEST");
+        });
+
+        it('When direction is EAST and instruction is LEFT, direction should be', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.direction = "EAST";
+          $scope.instruction = "LEFT";
+          $scope.submitInstr();
+          expect($scope.direction).toBe("NORTH");
+        });
+        it('When direction is EAST and instruction is RIGHT, direction should be', function () {
           var $scope = {};
           var controller = $controller('mainController', { $scope: $scope });
           $scope.direction = "EAST";
@@ -118,6 +161,24 @@
           $scope.submitInstr();
           expect($scope.direction).toBe("SOUTH");
         });
+
+        it('When direction is WEST and instruction is LEFT, direction should be', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.direction = "WEST";
+          $scope.instruction = "LEFT";
+          $scope.submitInstr();
+          expect($scope.direction).toBe("SOUTH");
+        });
+        it('When direction is WEST and instruction is RIGHT, direction should be', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.direction = "WEST";
+          $scope.instruction = "RIGHT";
+          $scope.submitInstr();
+          expect($scope.direction).toBe("NORTH");
+        });
+
       });
 
     });
