@@ -15,7 +15,7 @@
   <script type="text/javascript">
 
     /* Test Code */
-    describe('RobotMovementApp', function () {
+    describe('Robot Movement Application - Tests', function () {
       var $controller;
       beforeEach(module('myApp'));
       beforeEach(inject(function(_$controller_){
@@ -26,13 +26,11 @@
         it('Direction should be NORTH', function () {
           var $scope = {};
           var controller = $controller('mainController', { $scope: $scope });
-          $scope.submitInstr();
           expect($scope.direction).toBe("NORTH");
         });
         it('Steps forward should be 0', function () {
           var $scope = {};
           var controller = $controller('mainController', { $scope: $scope });
-          $scope.submitInstr();
           expect($scope.steps).toBe(0);
         });
       });
@@ -111,7 +109,7 @@
 
       describe('Testing all possible scenarios for direction', function () {
 
-        it('When direction is NORTH and instruction is LEFT, direction should be', function () {
+        it('When direction is NORTH and instruction is LEFT, direction should be WEST', function () {
           var $scope = {};
           var controller = $controller('mainController', { $scope: $scope });
           $scope.direction = "NORTH";
@@ -119,7 +117,7 @@
           $scope.submitInstr();
           expect($scope.direction).toBe("WEST");
         });
-        it('When direction is NORTH and instruction is RIGHT, direction should be', function () {
+        it('When direction is NORTH and instruction is RIGHT, direction should be EAST', function () {
           var $scope = {};
           var controller = $controller('mainController', { $scope: $scope });
           $scope.direction = "NORTH";
@@ -128,7 +126,7 @@
           expect($scope.direction).toBe("EAST");
         });
 
-        it('When direction is SOUTH and instruction is LEFT, direction should be', function () {
+        it('When direction is SOUTH and instruction is LEFT, direction should be EAST', function () {
           var $scope = {};
           var controller = $controller('mainController', { $scope: $scope });
           $scope.direction = "SOUTH";
@@ -136,7 +134,7 @@
           $scope.submitInstr();
           expect($scope.direction).toBe("EAST");
         });
-        it('When direction is SOUTH and instruction is RIGHT, direction should be', function () {
+        it('When direction is SOUTH and instruction is RIGHT, direction should be WEST', function () {
           var $scope = {};
           var controller = $controller('mainController', { $scope: $scope });
           $scope.direction = "SOUTH";
@@ -145,7 +143,7 @@
           expect($scope.direction).toBe("WEST");
         });
 
-        it('When direction is EAST and instruction is LEFT, direction should be', function () {
+        it('When direction is EAST and instruction is LEFT, direction should be NORTH', function () {
           var $scope = {};
           var controller = $controller('mainController', { $scope: $scope });
           $scope.direction = "EAST";
@@ -153,7 +151,7 @@
           $scope.submitInstr();
           expect($scope.direction).toBe("NORTH");
         });
-        it('When direction is EAST and instruction is RIGHT, direction should be', function () {
+        it('When direction is EAST and instruction is RIGHT, direction should be SOUTH', function () {
           var $scope = {};
           var controller = $controller('mainController', { $scope: $scope });
           $scope.direction = "EAST";
@@ -162,7 +160,7 @@
           expect($scope.direction).toBe("SOUTH");
         });
 
-        it('When direction is WEST and instruction is LEFT, direction should be', function () {
+        it('When direction is WEST and instruction is LEFT, direction should be SOUTH', function () {
           var $scope = {};
           var controller = $controller('mainController', { $scope: $scope });
           $scope.direction = "WEST";
@@ -170,7 +168,7 @@
           $scope.submitInstr();
           expect($scope.direction).toBe("SOUTH");
         });
-        it('When direction is WEST and instruction is RIGHT, direction should be', function () {
+        it('When direction is WEST and instruction is RIGHT, direction should be NORTH', function () {
           var $scope = {};
           var controller = $controller('mainController', { $scope: $scope });
           $scope.direction = "WEST";
@@ -180,6 +178,39 @@
         });
 
       });
+
+      describe('steps taken forward', function () {
+        it('should increase by 1 when instruction is FORWARD', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.steps=0;
+          $scope.instruction = "FORWARD";
+          $scope.submitInstr();
+          expect($scope.steps).toEqual(1);
+        });
+        it('should decrease by 1 when instruction is BACKWARD', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.steps=4;
+          $scope.instruction = "BACKWARD";
+          $scope.submitInstr();
+          expect($scope.steps).toEqual(3);
+        });
+      });
+
+      describe('when steps taken forward is 0 and instruction is BACKWARD', function () {
+        it('throw error message and steps should remain 0', function () {
+          var $scope = {};
+          var controller = $controller('mainController', { $scope: $scope });
+          $scope.steps=0;
+          $scope.instruction = "BACKWARD";
+          $scope.submitInstr();
+          expect($scope.errorMsg).toBe("Cannot go backwards when steps is 0");
+          expect($scope.steps).toEqual(0);
+        });
+      });
+
+
 
     });
   </script>
