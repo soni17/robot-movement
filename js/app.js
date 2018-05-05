@@ -1,6 +1,6 @@
 var myApp = angular.module('myApp',[]);
 
-myApp.controller('mainController' , ['$scope' , function($scope){
+myApp.controller('mainController' , ['$scope' , function ($scope){
 
 //declare variables inside a function which is to be used by the reset button
   $scope.setupVars = function(){
